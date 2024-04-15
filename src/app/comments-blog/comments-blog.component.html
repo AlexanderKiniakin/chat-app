@@ -1,0 +1,108 @@
+<div class="comments-background" (click)="this.closeCommentsModal()">
+</div>
+<div class="comments-preloader" *ngIf="this.databaseService.preloaderComments">
+    <img class="comments-preloader__img" src="/assets/image/profile-loader.svg" alt="">
+</div>
+<div class="comments-container" #divRefComments 
+@openModalComments (scroll)="onScroll()">
+    <div class="comments-container_header" *ngIf="this.databaseService.visibleMenu">
+        <div class="comments-container_header_content-block">
+        <p class="comments-container_header_content-block_txt" 
+        *ngIf="this.databaseService.comments.length > 0">
+            <span class="comments-container_header_content-block_txt__span">
+                {{ this.databaseService.responseCommentsArray.length }}
+            </span>
+             comment<span class="comments-container_header_content-block_txt__span" 
+             *ngIf="this.databaseService.responseCommentsArray.length > 1">s
+             </span>
+        </p>
+        <p class="comments-container_header_content-block_txt"
+        *ngIf="this.databaseService.responseCommentsArray.length === 0">
+            No comments yet
+        </p>
+        <img class="comments-container_header_content-block__icon" 
+        src="/assets/icon/profile-setting-icon.png" 
+        (click)="this.closeCommentsModal()" alt="">
+        </div>
+    <div class="comments-container__line"></div>
+    </div>
+    <div class="comments-container_content-block" 
+    #divRef *ngFor="let comment of databaseService.comments">
+        <div
+            class="comments-container_content-block__img"
+            style="background-image: url('{{ comment?.user.photoURL }}');
+            background-color: inherit;"
+            *ngIf="comment?.user.photoURL">
+        </div>
+        <div class="comments-container_content-block__img" *ngIf="!comment?.user.photoURL">
+            {{ user?.nickName | avatar }}
+        </div>
+        <div class="comments-container_content-block_description">
+            <p class="comments-container_content-block_description__name">
+                {{comment.user.nickName}}
+            </p>
+            <p class="comments-container_content-block_description__comment">
+                {{ comment.description }}
+            </p>
+            <div class="comments-container_content-block_date-block">
+                <p class="comments-container_content-block_date-block__time-ago">
+                    {{ comment.date.toDate() | dateAgo }}
+                </p>
+                <div class="comments-container_content-block_date-block_like-block">
+                    <ng-template [ngIf]="comment.id | like: user.commentLike" [ngIfElse]="notLikedTemplate">
+                        <img class="comments-container_content-block_date-block_like-block__like"
+                          [attr.comment-id]="'nw' + comment.id"
+                          src="/assets/icon/like-comments-red.png"
+                          alt="Liked"
+                          (click)="databaseService.setCommentLike(comment.id, authService.userData.uid)">
+                      </ng-template>
+                      <ng-template #notLikedTemplate>
+                        <img class="comments-container_content-block_date-block_like-block__like"
+                          [attr.comment-id]="'nw' + comment.id"
+                          src="/assets/icon/like-comments-black.png"
+                          alt="notLiked"
+                          (click)="databaseService.setCommentLike(comment.id, authService.userData.uid)">
+                      </ng-template>
+                    <span class="like-count" [attr.comment-id]="'ng' + comment.id" [innerHTML]="comment.likes"></span>
+                </div>
+            </div>
+        </div>
+        <img class="comments-container_content-block__icon"
+         src="/assets/image/app-men-setting.png" alt=""
+         *ngIf="comment.icon" #deleteModal
+         (click)="modal(comment)">
+        <div class="comments-container_content-block__txt-del"
+        *ngIf="comment.modal" (click)="databaseService.deleteOneComment(comment)">
+            Delete
+        </div>
+    </div>
+    <div class="comments-container_loading-block" *ngIf="this.databaseService.getCommentPreloader">
+        <div class="comments-container_loading-block__loading">...</div>
+    </div>
+    <div class="comments-container_footer" *ngIf="this.databaseService.visibleMenu">
+        <div class="comments-container__line"></div>
+        <div class="comments-container_footer__text-lenght"
+        *ngIf="this.commentDescription.length === 150">
+        The number of characters must be no more than 150
+        </div>
+        <div class="comments-container_footer_input-block">
+            <div
+                class="comments-container_footer_input-block__avatar"
+                style="background-image: url('{{ user?.photoURL }}');
+                background-color: inherit;"
+                *ngIf="user?.photoURL">
+            </div>
+            <div class="comments-container_footer_input-block__avatar" *ngIf="!user?.photoURL">
+                {{ user?.nickName | avatar }}
+            </div>
+            <textarea class="comments-container_footer_input-block__input"
+            autosize type="text" id="text"
+            maxlength="150" required rows="1" [(ngModel)]="commentDescription"></textarea>
+            <label for="text" class="comments-container_footer_input-block_label">
+                <img (click)="this.addComment()"
+                class="comments-container_footer_input-block_label__btn" 
+                src="/assets/icon/send-icon.png" alt="">
+            </label>
+        </div>
+    </div>
+</div>

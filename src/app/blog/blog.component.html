@@ -1,0 +1,96 @@
+<app-header></app-header>
+<div class="blog-container">
+    <div class="blog-container_stories-carousel">
+        <div class="blog-container_stories-carousel_story-block-my">
+            <div class="blog-container_stories-carousel_story-block-my_img-block">
+                <img class="blog-container_stories-carousel_story-block-my_img-block__img"
+                src="/assets/image/blog-container_stories_Taryhym.png" alt="">
+                <p class="blog-container_stories-carousel_story-block-my_img-block__plus">
+                  <span>+</span>
+                </p>
+            </div>
+            <p class="blog-container_stories-carousel_story-block-my__name">Taryhym</p>
+        </div>
+        <div class="blog-container_stories-carousel_story-block">
+            <img class="blog-container_stories-carousel_story-block__img"
+             src="/assets/image/blog-container_stories_Dostlarymyn.png" alt="">
+            <p class="blog-container_stories-carousel_story-block__name">Dostlarymyň dostlary</p>
+        </div>
+        <div class="blog-container_stories-carousel_story-block">
+            <img class="blog-container_stories-carousel_story-block__img"
+             src="/assets/image/blog-container_stories_Annageldi.png" alt="">
+            <p class="blog-container_stories-carousel_story-block__name">Annageldi</p>
+        </div>
+        <div class="blog-container_stories-carousel_story-block">
+            <img class="blog-container_stories-carousel_story-block__img"
+             src="/assets/image/blog-container_stories_Annageldi.png" alt="">
+            <p class="blog-container_stories-carousel_story-block__name">Annageldi</p>
+        </div>
+        <div class="blog-container_stories-carousel_story-block">
+            <img class="blog-container_stories-carousel_story-block__img"
+             src="/assets/image/blog-container_stories_Annageldi.png" alt="">
+            <p class="blog-container_stories-carousel_story-block__name">Annageldi</p>
+        </div>
+    </div>
+    <div class="blog-container__line"></div>
+    <div class="blog-container_posts-block" #divRef *ngFor="let post of databaseService.posts">
+        <div class="blog-container_posts-block_user-block">
+            <div class="blog-container_posts-block_user-block__img"
+            style="background-image: url({{post.user.photoURL}});"></div>
+            <p class="blog-container_posts-block_user-block__name">
+                {{post.user.nickName}}
+            </p>
+        </div>
+        <div class="blog-container_posts-block_image-block"
+        (dblclick)="databaseService.setLike(post.id, authService.userData.uid)">
+            <img class="blog-container_posts-block_image-block__img" 
+            [defaultImage]="'assets/image/photo-preload2.svg'" [useSrcset]="true"
+             [lazyLoad]=post.image alt="">   
+             <div class="like-animation" *ngIf="databaseService.likeAnimation[post.id]"></div>
+        </div>
+        <div class="blog-container_posts-block_name">
+            <p class="blog-container_posts-block_name_descroption"
+            #descroptionTXT>
+            {{post.description | slice: 0:32}}
+                <span *ngIf="post.description.length > 32" (click)="openDescription(post, $event)"
+                class="blog-container_posts-block_name_descroption__dots"
+                >...</span>
+            </p>
+            <p class="blog-container_posts-block_name__time-ago">{{ post.date.toDate() | dateAgo }}</p>
+        </div>
+        <div class="blog-container_posts-block_icon-block">
+            <ng-template [ngIf]="post.id | like: user.like" [ngIfElse]="notLikedTemplate">
+                <img class="blog-container_posts-block_icon-block__img-like"
+                  [attr.post-id]="'nw' + post.id"
+                  src="/assets/icon/like-red.png"
+                  alt="Liked"
+                  (click)="databaseService.setLike(post.id, authService.userData.uid)">
+              </ng-template>
+              <ng-template #notLikedTemplate>
+                <img class="blog-container_posts-block_icon-block__img-like"
+                  [attr.post-id]="'nw' + post.id"
+                  src="/assets/icon/like-black.png"
+                  alt="notLiked"
+                  (click)="databaseService.setLike(post.id, authService.userData.uid)">
+              </ng-template>
+            <span class="like-count" [attr.post-id]="'ng' + post.id" [innerHTML]="post.likes"></span>
+            <img class="blog-container_posts-block_icon-block__img-comment"
+            (click)="commentsModal(post)" src="/assets/icon/blog-container_comment.png" alt="">
+            <img class="blog-container_posts-block_icon-block__img-download" 
+            src="/assets/icon/blog-container_download.png" alt="" #shareButton (click)="shareButtonModal(post)">
+            <share-buttons class="blog-container_posts-block_icon-block__shareModal" 
+            *ngIf="post.shareButton" [url]="this.shareUrl"
+            [include]="['facebook','twitter', 'vk','viber','telegram','whatsapp','copy']">
+            </share-buttons>
+        </div>
+    </div>
+    <div class="blog-container_loading-block" *ngIf="this.databaseService.preloader">
+        <div class="blog-container_loading-block__loading">...</div>
+    </div>
+    <div class="blog-container_btn-block">
+        <p class="blog-container_btn-block__btn" [routerLink]='["/add-post"]'
+        (click)="this.databaseService.pageRouting = 'blog'">+</p>
+    </div>
+</div>
+<app-menu></app-menu>
+<app-comments-blog *ngIf="this.databaseService.commentsModal"></app-comments-blog>

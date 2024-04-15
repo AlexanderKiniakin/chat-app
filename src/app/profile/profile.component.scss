@@ -1,0 +1,230 @@
+* {
+  font-family: Inter;
+  margin: 0;
+  padding: 0;
+}
+
+.profile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #f1f1f1;
+}
+
+.profile-user-data-title {
+  position: absolute;
+  top: 350px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-user-data-title_img {
+  width: 103px;
+  height: 103px;
+  border-radius: 50%;
+  border: 4px solid #00acee;
+}
+
+.profile-user-data-title__name {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #707070;
+  margin-top: 11px;
+}
+
+.profile-user-data-title__fon {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #707070;
+  margin: 3px 0 3px 0;
+}
+
+.profile-user-data-title__mail {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #00acee;
+  margin-bottom: 14px;
+}
+
+.profile-menu-block_link__img {
+  width: 24px;
+  height: 24px;
+  margin-left: 16px;
+}
+
+.profile-menu-block_link__img-name {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  margin-left: 13px;
+}
+
+.profile-menu-list {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 28%;
+  padding-bottom: 28%;
+}
+
+.profile-menu-block_link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 343px;
+  height: 42px;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 5px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.profile-title-visible_box_img {
+  width: 100%;
+  height: 298px;
+  position: relative;
+  z-index: 2;
+}
+
+.profile-title-visible__img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #00aeed61;
+  margin-top: 110px;
+}
+
+.profile-image-preloader {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.666);
+  z-index: 10;
+}
+
+.profile-title-visible_icon {
+  width: 23px;
+  height: 23px;
+}
+
+.profile-title {
+  height: 100%;
+  margin-top: -71px;
+  z-index: 1;
+  position: relative;
+}
+
+.profile-title-visible_box__icon {
+  position: absolute;
+  z-index: 3;
+  top: 157px;
+  right: 32px;
+}
+
+.profile-menu-block_min__bottom {
+  margin-bottom: 100px;
+}
+
+.profile-container_contact-avatar {
+  width: 103px;
+  height: 103px;
+  background-color: #00aced;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: 4px solid #00aced;
+}
+
+.profile-preloader {
+  width: 113px;
+  height: 113px;
+  position: absolute;
+  top: 0;
+  background: rgba(255, 255, 255, 0.666);
+  z-index: 10;
+  border-radius: 50%;
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+}
+
+.preloader-photo {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5019607843);
+  border-radius: 50%;
+  z-index: 10;
+  color: white;
+  font-size: 21px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile_photo-upload {
+  position: absolute;
+  width: 100%;
+  height: 111px;
+  top: 0;
+  opacity: 0;
+  z-index: 10;
+}
+
+.online {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: blue;
+  position: absolute;
+  top: 95px;
+}
+
+input[type="file"]::file-selector-button {
+  display: none;
+}
+
+app-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 7;
+}
+
+app-menu {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 6;
+}
+
+input[type="file"]::file-selector-button {
+  display: none;
+}

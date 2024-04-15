@@ -1,0 +1,63 @@
+<div class="my-posts-container">
+    <div class="my-posts-container_header-block">
+        <img class="my-posts-container_header-block__img" src="/assets/icon/arrow-left.png"
+         alt="" [routerLink]='["/profile"]'>
+        <h2 class="my-posts-container_header-block__txt">My posts</h2>
+    </div>
+
+    <div class="my-posts-container_posts-block" #divRef 
+    *ngFor="let post of databaseService.posts">
+        <div class="my-posts-container_posts-block_user-block">
+            <div class="my-posts-container_posts-block_user-block_photo">
+                <div class="my-posts-container_posts-block_user-block_photo__img" 
+                style="background-image: url({{post.user.photoURL}});"></div>
+                <p class="my-posts-container_posts-block_user-block_photo__name">
+                    {{post.user.nickName}}
+                </p>
+            </div>
+            <img class="my-posts-container_posts-block_user-block__dots"
+             src="/assets/icon/dots-gray.png" #divRefMyPosts alt="" (click)="modal(post)">
+             <div class="my-posts-container_posts-block_user-block__txt-del"
+             *ngIf="post.modal" (click)="databaseService.deleteOnePost(post)">
+             Delete post
+            </div>
+        </div>
+        <div class="my-posts-container_posts-block_image-block">
+            <img class="my-posts-container_posts-block_image-block__img" 
+            [defaultImage]="'assets/image/photo-preload2.svg'" [useSrcset]="true"
+             [lazyLoad]=post.image alt="">
+        </div>
+        <div class="my-posts-container_posts-block_name">
+            <p class="my-posts-container_posts-block_name_descroption"
+            #descroptionTXT>
+            {{post.description | slice: 0:32}}
+                <span *ngIf="post.description.length > 32" (click)="openDescription(post, $event)"
+                class="my-posts-container_posts-block_name_descroption__dots"
+                >...</span>
+            </p>
+            <p class="my-posts-container_posts-block_name__time-ago">{{ post.date.toDate() | dateAgo }}</p>
+        </div>
+        <div class="my-posts-container_posts-block_icon-block">
+            <img class="my-posts-container_posts-block_icon-block__img-like" src="/assets/icon/like-black.png" alt="">
+            <span class="like-count" [innerHTML]="post.likes"></span>
+            <img class="my-posts-container_posts-block_icon-block__img-comment"
+            (click)="commentsModal(post)" src="/assets/icon/blog-container_comment.png" alt="">
+            <img class="my-posts-container_posts-block_icon-block__img-download" 
+            src="/assets/icon/blog-container_download.png" alt="" #shareButton (click)="shareButtonModal(post)">
+            <share-buttons class="my-posts-container_posts-block_icon-block__shareModal" 
+            *ngIf="post.shareButton" [url]="this.shareUrl"
+            [include]="['facebook','twitter', 'vk','viber','telegram','whatsapp','copy']">
+            </share-buttons>
+        </div>
+    </div>
+    <p class="my-posts-container__no-posts" *ngIf="this.databaseService.noPosts">You don't have any posts.</p>
+    <div class="my-posts-container_loading-block" *ngIf="this.databaseService.preloader">
+        <div class="my-posts-container_loading-block__loading">...</div>
+    </div>
+    <div class="my-posts-container_btn-block">
+        <p class="my-posts-container_btn-block__btn" [routerLink]='["/add-post"]' 
+        (click)="this.databaseService.pageRouting = 'my-posts'">+</p>
+    </div>
+</div>
+<app-menu></app-menu>
+<app-comments-blog *ngIf="this.databaseService.commentsModal"></app-comments-blog>

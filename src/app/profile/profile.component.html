@@ -1,0 +1,121 @@
+<app-header></app-header>
+<div class="profile">
+  <div class="profile-title">
+    <div class="profile-title-visible_box_img">
+      <div
+        class="profile-title-visible__img"
+        [style.background-image]="
+        user?.profileImage ? 'url(' + user?.profileImage + ')' : defaultImage
+      "
+      ></div>
+      <div
+        class="profile-image-preloader"
+        *ngIf="storageService.showProfileImagePreloader">
+        <img class="loader" src="/assets/image/photo-preload2.svg" alt="" />
+      </div>
+    </div>
+    <div class="profile-title-visible_box__icon">
+      <input
+        class="profile_photo-upload"
+        type="file"
+        (change)="uploadImage($event, 'users_profileImage', 'profileImage')"
+        accept="image/*">
+      <img
+        class="profile-title-visible_icon"
+        src="/assets/icon/profil-edit.png"
+        alt="">
+    </div>
+    <div class="profile-menu-list">
+      <div class="profile-user-data-title">
+        <input
+          class="profile_photo-upload"
+          type="file"
+          (change)="uploadImage($event, 'users', 'photoURL')"
+          accept="image/*">
+        <div
+          class="profile-container_contact-avatar"
+          style="background-image: url('{{ user?.photoURL }}');
+        background-color: inherit;"
+          *ngIf="user?.photoURL">
+          <div class="profile-preloader" *ngIf="storageService.showPreloader">
+            <img class="loader" src="/assets/image/profile-loader.svg" alt="" />
+          </div>
+        </div>
+        <div class="profile-container_contact-avatar" *ngIf="!user?.photoURL">
+          {{ user?.nickName | avatar }}
+        </div>
+        <!-- <div class="online" *ngIf="authService.userData"></div> -->
+
+        <p class="profile-user-data-title__name">{{ user?.name }}</p>
+        <p class="profile-user-data-title__fon">{{ user?.phone }}</p>
+        <p class="profile-user-data-title__mail">{{ user?.nickName }}</p>
+      </div>
+      <div class="profile-menu-block_link">
+        <img
+          class="profile-menu-block_link__img"
+          src="/assets/icon/profil-my-favorites.png"
+          alt=""
+        />
+        <p class="profile-menu-block_link__img-name">My favorites</p>
+      </div>
+      <div class="profile-menu-block_link" [routerLink]='["/my-posts"]'>
+        <img
+          class="profile-menu-block_link__img"
+          src="/assets/icon/profil-statistics.png"
+          alt=""
+        />
+        <p class="profile-menu-block_link__img-name">My posts</p>
+      </div>
+      <div class="profile-menu-block_link">
+        <img
+          class="profile-menu-block_link__img"
+          src="/assets/icon/profil-statistics.png"
+          alt=""
+        />
+        <p class="profile-menu-block_link__img-name">Statistics</p>
+      </div>
+      <div class="profile-menu-block_link">
+        <img
+          class="profile-menu-block_link__img"
+          src="/assets/icon/profil-user-rules.png"
+          alt=""
+        />
+        <p class="profile-menu-block_link__img-name">User Rules</p>
+      </div>
+      <div class="profile-menu-block_link">
+        <img
+          class="profile-menu-block_link__img"
+          src="/assets/icon/profil-user-rights.png"
+          alt=""
+        />
+        <p class="profile-menu-block_link__img-name">User rights</p>
+      </div>
+      <div class="profile-menu-block_link">
+        <img
+          class="profile-menu-block_link__img"
+          src="/assets/icon/profil-sazlamalar.png"
+          alt=""
+        />
+        <p class="profile-menu-block_link__img-name">Settings</p>
+      </div>
+      <div class="profile-menu-block_link">
+        <img
+          class="profile-menu-block_link__img"
+          src="/assets/icon/profil-switch-on.png"
+          alt=""
+        />
+        <p class="profile-menu-block_link__img-name">Switch on</p>
+      </div>
+      <div class="profile-menu-block_link">
+        <img
+          class="profile-menu-block_link__img"
+          src="/assets/icon/profil-log-out.png"
+          alt=""
+        />
+        <p class="profile-menu-block_link__img-name" (click)="logOut()">Log out</p>
+      </div>
+    </div>
+    <app-menu></app-menu>
+  </div>
+</div>
+<app-menu></app-menu>

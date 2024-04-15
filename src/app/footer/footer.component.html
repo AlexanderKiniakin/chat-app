@@ -1,0 +1,36 @@
+
+<div class="footer">
+  <div class="footer-container">
+    <div class="footer-container_description-input">
+      <img *ngIf="!menuService.changeIcon" class="footer-container_description-smiles" 
+      src="/assets/icon/footer-smile.png" (click)="smilesOpen()" alt="">
+      <button class="footer-container_description__button" (click)="this.compressFile()"
+      *ngIf="menuService.changeIcon">
+        <img class="footer-container_description-smiles"
+            src="/assets/image/clip.png" alt="">
+        <div class="footer-container_description-icon" *ngIf="this.chatsService.inputIcon">1</div>
+      </button>
+        <textarea class="footer-container_description-message" 
+        type="text" autosize autofocus required rows="1"
+        maxlength="450"
+        (keyup.enter)="this.sendMessage()"
+        [(ngModel)]="this.chatsService.addChatDescription"
+        placeholder="Message"></textarea>
+    </div>
+    <div class="footer-container_description">
+      <button class="footer-container_description__button" (click)="this.compressFile()"
+      *ngIf="!menuService.changeIcon">
+        <img class="footer-container_description-data"
+        src="/assets/icon/footer-data.png" alt="">
+        <div class="footer-container_description-icon" *ngIf="this.chatsService.inputIcon">1</div>
+      </button>
+      <img *ngIf="menuService.changeIcon" class="footer-container_description-data"
+      src="/assets/image/smile.png" alt="" (click)="smilesOpen()">
+      <img *ngIf="!menuService.changeIcon" class="footer-container_description-microphone" 
+      src="/assets/icon/footer-microphone.png" alt="">
+      <img *ngIf="menuService.changeIcon" class="footer-container_description-microphone" 
+      src="/assets/image/send.png" alt="" (click)="this.sendMessage()">
+    </div>
+  </div>
+</div>
+

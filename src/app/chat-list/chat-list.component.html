@@ -1,0 +1,66 @@
+<div class="section-chat-list">
+  <app-header></app-header>
+  <div class="chat-list">
+    <div
+      class="chat-list-search"
+      [ngClass]="{ visible: headerMobileService.searchActive }"
+    >
+      <img class="search-icon" src="/assets/icon/search-icon.png" alt="icon" />
+      <input
+        class="search"
+        placeholder="Enter a username"
+        autocomplete="off"
+        type="text"
+        [(ngModel)]="searchFilter"
+      />
+    </div>
+    <p *ngIf="mainService.showCount" class="contact-selection-phones">
+      Total number of contacts: <span>138</span>
+    </p>
+
+    <div
+      class="chat-list-wrapper"
+      *ngFor="let user of users | search : searchFilter"
+      (click)="redirectToMessage(user.uid)"
+      [ngClass]="userUid === user.uid ? 'chat-list-wrapper-active' : ''"
+    >
+      <div class="chat-list-main">
+        <div class="chat-list-main-img">
+          <div
+            class="chat-list-main-img-wrap"
+            [ngStyle]="{
+              'background-image': user?.photoURL
+                ? 'url(' + user.photoURL + ')'
+                : 'initial'
+            }"
+          >
+          <div class="chat-list-main-img__check-active" *ngIf="user.online"></div>
+            <div class="chat-list-main-img__check" *ngIf="!user.online"></div>
+            <div
+              class="profile-container_contact-avatar"
+              *ngIf="!user.photoURL"
+            >
+              {{ user.nickName | avatar }}
+            </div>
+          </div>
+        </div>
+        <div class="chat-list-main-title">
+          <p class="title-name">{{ user.nickName }}</p>
+          <p class="title-message">User title-message...</p>
+        </div>
+        <div class="chat-list-main-time">
+          <div class="main-time">12:34</div>
+          <div class="main-time-message-check">3</div>
+        </div>
+        <div *ngIf="mainService.showDesktopChat">
+          <img
+            class="desktop-selection-phone"
+            src="/assets/icon/desktop-selection-phone.png"
+          />
+        </div>
+      </div>
+      <div class="chat-list-line"></div>
+    </div>
+  </div>
+  <app-menu></app-menu>
+</div>

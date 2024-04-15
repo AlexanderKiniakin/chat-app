@@ -1,0 +1,71 @@
+<div class="verification-container">
+  <div class="verification-preloader" *ngIf="showPreloader">
+    <img
+      class="verification-preloader__spinner"
+      src="/assets/image/spinner.svg"
+      alt="img"
+    />
+  </div>
+  <div class="verification-container_main-block">
+    <div
+      class="verification-container_main-block__back-button"
+      [routerLink]="['/registration']"
+    >
+      <img src="/assets/image/back-btn.png" alt="" />
+    </div>
+    <h3 class="verification-container_main-block__title">Verification</h3>
+    <h2 class="verification-container_main-block__message">
+      <span class="verification-container__blue-text">Verification code </span
+      >was sent to your phone number
+    </h2>
+  </div>
+  <div class="verification-container_digit-entry-block">
+    <h5 class="verification-container_digit-entry-block__note">
+      Enter the 6-digit
+      <span class="verification-container__blue-text"> verification code </span>
+      sent to your phone number
+    </h5>
+    <form class="digit-entry-block_code-container">
+      <input
+        class="digit-entry-block__code-box"
+        name="verificationCode"
+        *ngFor="let input of inputs; let i = index"
+        required
+        placeholder=""
+        [value]="input"
+        maxlength="1"
+        [disabled]="true"
+      />
+    </form>
+    <div [hidden]="authService.visibility" class="alert alert-danger">
+      {{ authService.errorMessage }}
+    </div>
+    <div
+      class="digit-entry-block_code-container_resend-request"
+      (click)="resendCode()"
+      [style.opacity]="disableResend ? '0.4' : '1'"
+    >
+      <p class="digit-entry-block_code-container__text">Resend code!</p>
+      <div *ngIf="visibility" class="digit-entry-block_code-container__timer">
+        00:{{ getFormattedCounter() }}
+      </div>
+    </div>
+    <div class="digit-entry-block_keyboard">
+      <div
+        class="digit-entry-block_keyboard__digit"
+        *ngFor="let digit of digits"
+        (click)="onDigitClick(digit)"
+      >
+        {{ digit }}
+      </div>
+      <div class="digit-entry-block_keyboard_backspace" (click)="clearInputs()">
+        <img
+          class="digit-entry-block_keyboard_backspace__icon"
+          src="/assets/image/backspace.jpg"
+          alt="img"
+        />
+      </div>
+    </div>
+  </div>
+  <div id="recaptcha-container"></div>
+</div>

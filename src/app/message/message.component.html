@@ -1,0 +1,40 @@
+<div class="message">
+  <app-header></app-header>
+  <div class="message-container">
+    <div class="message-container_search" *ngIf="this.headerMobileService.searchActiveDesktop">
+      <img class="message-container_search__icon" src="/assets/icon/search-icon.png" alt="icon" />
+      <input class="message-container_search__input" type="text" placeholder="Enter a text message">
+    </div>
+    <div class="message-chat" *ngFor="let chat of this.messages">
+      <div class="message-container_date-block">
+        <p class="message-container_date-block__messeges-date" *ngIf="chat.dateicon">
+          {{ chat.date.toDate() | date: 'd MMMM YYYY' }}
+        </p>
+      </div>
+      <div class="message-chat_send" *ngIf="chat.user.id !== this.databaseService.userRef.id">
+        <div class="message-container_send">
+          <img class="message-container_send__img" 
+            [defaultImage]="'assets/image/photo-preload2.svg'" [useSrcset]="true"
+             [lazyLoad]=chat.image *ngIf="chat.image.length" alt="">
+          <p class="message-container_send-data" *ngIf="chat.description.length">{{ chat.description }}</p>
+          <p class="message-container_send-date">{{ chat.date.toDate() | date: 'H:mm' }}</p>
+        </div>
+      </div>
+      <div class="message-chat_get" *ngIf="chat.user.id === this.databaseService.userRef.id">
+        <div class="message-container_get" (contextmenu)="onRightClick(chat)">
+          <img class="message-container_get__img" 
+            [defaultImage]="'assets/image/photo-preload2.svg'" [useSrcset]="true"
+             [lazyLoad]=chat.image *ngIf="chat.image.length" alt="">
+          <p class="message-container_get-data" *ngIf="chat.description.length">{{ chat.description }}</p>
+          <p class="message-container_get-date">{{ chat.date.toDate() | date: 'H:mm' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="smiles-container" *ngIf="smileCheck">
+    <div class="smile" *ngFor="let smile of smiles">
+      <div (click)="getSmile(smile)">{{smile}}</div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

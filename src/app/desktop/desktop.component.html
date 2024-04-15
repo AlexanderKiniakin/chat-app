@@ -1,0 +1,30 @@
+<div class="section-desktop">
+	<div class="desktop-header">
+		<div class="desktop-header-item">
+			<img src="assets/image/logo.png" alt="logo">
+			<p class="header-item-title">TimeChat 1.0</p>
+		</div>
+		<div (click)="this.showSetting()" class="desktop-btn-settings">
+			<img src="assets/image/btn-setting.png" alt="btn">
+		</div>
+	</div>
+	<div class="main-container">
+		<div class="main-container-contact">
+            <app-chat-list></app-chat-list>
+        </div>
+		<div class="main-container-message">
+            <div *ngIf="menuService.startDesktop" class="contact-selection-container">
+                <div class="contact-selection-container_prediction">
+                    Select a contact to start a conversation!
+                </div>
+            </div>
+			<div class="main-container-message-active" *ngIf="menuService.showMessage">
+				<app-message *ngIf="menuService.relayComponent"></app-message>
+			</div>
+            <router-outlet></router-outlet>
+        </div>
+		<div class="main-container-setting" *ngIf="!this.settingDesktop">
+            <app-settings></app-settings>
+        </div>
+	</div>
+</div>

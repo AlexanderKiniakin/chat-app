@@ -1,0 +1,78 @@
+<app-header></app-header>
+<div class="search">
+  <div class="search-options">
+    <div class="search-options-item">
+      <div class="search-options_icon-container">
+        <img
+          class="search-options__scan-icon"
+          src="/assets/icon/scan-icon.png"
+          alt="img"
+        />
+      </div>
+      <h4>Scan</h4>
+    </div>
+    <div class="search-options-item">
+      <div class="search-options_icon-container">
+        <img
+          class="search-options__vibrate-icon"
+          src="/assets/icon/vibrate-icon.png"
+          alt="img"
+        />
+      </div>
+      <h4>Vibrate</h4>
+    </div>
+    <div class="search-options-item">
+      <div class="search-options_icon-container">
+        <img
+          class="search-options__search-icon"
+          src="/assets/icon/search-blue-icon.png"
+          alt="img"
+        />
+      </div>
+      <h4>Search</h4>
+    </div>
+    <div class="search-options-item">
+      <div class="search-options_icon-container">
+        <img
+          class="search-options__users-icon"
+          src="/assets/icon/people-icon.png"
+          alt="img"
+        />
+      </div>
+      <h4>Users nearby</h4>
+    </div>
+  </div>
+
+  <div class="search-qr-code-container">
+    <h2 class="search-qr-code-container__title">My QR</h2>
+
+    <div class="search-qr-code-container_qr-scan">
+      <qrcode
+        [qrdata]="qrData"
+        [allowEmptyString]="true"
+        [ariaLabel]="'QR Code image with the following content...'"
+        [cssClass]="'search-qr-code-container_qr-scan__image'"
+        [colorDark]="'#000000ff'"
+        [colorLight]="'#ffffffff'"
+        [elementType]="'canvas'"
+        [errorCorrectionLevel]="'L'"
+        [margin]="1.5"
+        [scale]="1"
+        [title]="'A custom title attribute'"
+        [width]="279"
+      ></qrcode>
+    </div>
+    <div class="search-qr-code-container_button" (click)="showMenu()" *ngIf="!showButtons">Share QR</div>
+    <div class="share-content" *ngIf="showButtons">
+      <share-buttons [include]="[
+      'facebook',
+       'twitter',
+       'vk',
+       'telegram',
+       'email',
+       'pinterest' ]">
+      </share-buttons>
+    </div>
+  </div>
+  <app-menu></app-menu>
+</div>

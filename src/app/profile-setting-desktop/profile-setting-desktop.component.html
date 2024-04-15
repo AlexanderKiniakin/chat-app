@@ -1,0 +1,115 @@
+<div class="profile-container">
+    <div class="profile-container-title">
+        <h5 class="profile-container-title_name">Edit profile</h5>
+        <img class="profile-container-title__icon" (click)="menuService.returnStartPage()" routerLink="/desktop" [queryParams]="{ user: menuService.userParams}" src="/assets/icon/profile-setting-icon.png" alt="">
+    </div>
+
+<div class="profile-container_contact">
+    <div class="profile-container_contact-photo">
+        <div class="profile-container_contact-avatar-block">
+            <div class="profile-container_contact-avatar"
+            style="background-image: url('{{user?.photoURL}}');background-color: inherit;"
+              *ngIf="user?.photoURL else elseBlock">
+              <div class="profile-preloader" *ngIf="storageService.showPreloader">
+                <img class="loader" src="/assets/image/profile-loader.svg" alt="" />
+              </div>
+            </div>
+            <ng-template #elseBlock>
+                <div class="profile-container_contact-avatar">{{user?.nickName | avatar}}</div>
+            </ng-template>
+            <div class="profile-container_contact-avatar-add">
+                <input 
+                    class="profile_photo-upload"
+                    type="file"
+                    (change)="uploadImage($event, 'users', 'photoURL')"
+                    accept="image/*">
+            </div>
+    </div>
+    </div>
+    <p class="profile-container_contact-name">{{user?.name}}</p>
+    <p class="profile-container_contact-online">Online</p>
+    <div class="profile-container_contact-description-block">
+        <input class="profile-container_contact-description" type="text" placeholder="About yourself">
+        <span class="profile-container_contact-maxtext">150 söz</span>
+    </div>
+    <div class="profile-container_contact-data">
+        <p class="profile-container_contact-data_text">You should enter any information about yourself such as your age, location, city, etc.<br>
+            For example: I am 23 years old, from Turkmenistan, a designer.</p>
+    </div>
+
+    <div class="profile-container_contact-menu">
+        <div class="profile-container_contact-menu_data">
+            <img class="profile-container_contact-menu_data-icon" src="/assets/image/profile-setting-name.png" alt="">
+            <p class="profile-container_contact-menu_data-text">Name:</p>
+        </div>
+        <p class="profile-container_contact-menu_data-description">{{user?.name}}</p>
+    </div>
+
+    <div class="profile-container_contact-menu">
+        <div class="profile-container_contact-menu_data">
+            <img class="profile-container_contact-menu_data-icon" src="/assets/image/profile-setting-number.png" alt="">
+            <p class="profile-container_contact-menu_data-text">Phone number:</p>
+        </div>
+        <p class="profile-container_contact-menu_data-description">{{user?.phone}}</p>
+    </div>
+
+    <div class="profile-container_contact-menu">
+        <div class="profile-container_contact-menu_data">
+            <img class="profile-container_contact-menu_data-icon" src="/assets/image/profile-setting-gmail.png" alt="">
+            <p class="profile-container_contact-menu_data-text">Username</p>
+        </div>
+        <p class="profile-container_contact-menu_data-description">{{user?.nickName}}</p>
+    </div>
+
+    <div class="profile-container_transition"></div>
+
+    <div class="search-qr-code-container">
+        <h2 class="search-qr-code-container__title">My QR</h2>
+        <div class="search-qr-code-container_qr-scan">
+            <qrcode
+              [allowEmptyString]="true"
+              [qrdata]="qrData"
+              [ariaLabel]="'QR Code image with the following content...'"
+              [cssClass]="'search-qr-code-container_qr-scan__image'"
+              [colorDark]="'#000000ff'"
+              [colorLight]="'#ffffffff'"
+              [elementType]="'canvas'"
+              [errorCorrectionLevel]="'L'"
+              [margin]="1.5"
+              [scale]="1"
+              [title]="'A custom title attribute'"
+              [width]="qrCodeWidth"
+            ></qrcode>
+        </div>
+    </div>
+
+    <div class="profile-container_transition"></div>
+
+    <div class="profile-container-users">
+        <div class="profile-container-users_menu">
+            <div class="profile-container-users_menu-data">
+                <img class="profile-container-users_menu-data_image" src="/assets/image/profile-setting-avatar.png" alt="">
+                <p class="profile-container-users_menu-data_text">Graphic designer</p>
+            </div>
+            <p class="profile-container-users_menu-description">23</p>
+        </div>
+        <div class="profile-container-users_menu-second">
+            <div class="profile-container-users_menu-data">
+                <img class="profile-container-users_menu-data_image" src="/assets/image/profile-setting-avatar.png" alt="">
+                <p class="profile-container-users_menu-data_text">Вesigner</p>
+            </div>
+            <p class="profile-container-users_menu-description">1456</p>
+        </div>
+
+        <div class="profile-container-users_add">
+            <img class="profile-container-users_add-button" src="/assets/icon/profile-setting-button_add.png" alt="">
+        </div>
+        <p class="profile-container-users_add-description">DOUBLE ACCOUNT</p>
+    </div>
+
+    <div class="profile-container-description">
+        <p class="profile-container-description_text">Powered by:</p>
+        <img class="profile-container-description_icon" src="/assets/icon/profile-setting-footer_icon.png" alt="">
+    </div>
+
+</div>

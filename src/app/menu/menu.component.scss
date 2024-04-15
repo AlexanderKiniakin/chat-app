@@ -1,0 +1,42 @@
+.section-menu {
+    width: 100%;
+}
+.menu-nav {
+    display: flex;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border-radius: 25px 25px 0px 0px;
+    padding: 23px 0px 14px 0px;
+}
+.menu-nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.menu-nav-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.menu-nav-item img {
+    width: 25px;
+    height: 25px;
+}
+.menu-nav-item-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #707070;
+    transition: 0.5s;
+}
+.menu-nav-item:hover .menu-nav-item-title {
+    color: #00ACED;
+}
+.menu-active-color {
+    color: #00ACED;
+}

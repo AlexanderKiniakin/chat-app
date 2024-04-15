@@ -1,0 +1,182 @@
+.start-page-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: url("/assets/image/start-page-background.png") #f2f2f2;
+}
+
+.start-page-container_images-block {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 100px 0px 66px 0px;
+}
+
+.start-page-container_images-block_girl-block {
+    width: 156px;
+    height: 156px;
+    background: #00ACEE;
+    background-position: bottom;
+    border-radius: 87.5px 87.5px 87.5px 0px;
+}
+
+.start-page-container_images-block_girl-block__img {
+    width: 100%;
+    margin-top: 1px;
+}
+
+.start-page-container_images-block_male-block {
+    width: 156px;
+    height: 156px;
+    background: #00ACEE;
+    background-position: bottom;
+    border-radius: 87.5px;
+}
+
+.start-page-container_images-block_male-block__img {
+    width: 100%;
+    margin-top: -18px;
+}
+
+.start-page-container_images-block_phone-block {
+    width: 156px;
+    height: 156px;
+}
+
+.start-page-container_images-block_phone-block__img {
+    width: 100%;
+}
+
+.start-page-container_images-block_oldMan-block {
+    width: 156px;
+    height: 156px;
+    background: #00ACEE;
+    background-position: bottom;
+    border-radius: 87.5px 87.5px 0px 87.5px;;
+}
+
+.start-page-container_images-block_oldMan-block__img {
+    width: 100%;
+    margin-top: 2px;
+}
+
+.start-page-container_started-block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #FFFFFF;
+    border-radius: 35px 35px 0px 0px;
+    padding: 37px 0px 25px 0px;
+}
+
+.start-page-container_started-block__header {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+    margin: 0px 25px;
+}
+
+.start-page-container_started-block__txt {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #959595;
+    margin-top: 20px;
+}
+
+.start-page-container_started-block__btn {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #00ACEE;
+    border-radius: 81px;
+    margin: 84px 0px 55px 0px;
+    padding: 11px 84px;
+    box-shadow: 0px 0px 45px 0px rgba(0, 172, 238, 0.8);
+    cursor: pointer;
+    transition: all .8s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    
+}
+
+.start-page-container_started-block_copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.start-page-container_started-block_copyright__txt {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #000000;
+    margin-right: 7.25px;
+}
+
+.start-page-container_started-block_copyright__img {
+    width: 65px;
+}
+@media only screen and (min-width: 920px) {
+    .start-page-container {
+        height: 100vh;
+    }
+    .start-page-container_started-block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 0px; 
+    }
+    .start-page-container_started-block__header {
+        margin-top: 100px;
+    }
+    .start-page-container_started-block_copyright {
+        margin-top: 200px;
+    }
+    .start-page-container_started-block__btn::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #00ACEE;
+        border-radius: 10rem;
+        z-index: -2;
+    }
+    .start-page-container_started-block__btn::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: darken(#00ACEE, 15%);
+        transition: all .3s;
+        border-radius: 10rem;
+        z-index: -1;
+    }
+    .start-page-container_started-block__btn:hover {
+        color: #FFFFFF;
+    }
+    .start-page-container_started-block__btn:hover::before {
+        width: 100%;
+    }
+}

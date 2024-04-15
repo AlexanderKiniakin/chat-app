@@ -1,0 +1,41 @@
+<div class="creating-post-container">
+    <div class="creating-post-container_header-block">
+        <img class="creating-post-container_header-block__img" src="/assets/icon/arrow-left.png"
+         alt="" (click)="routingComponent()">
+        <h2 class="creating-post-container_header-block__txt">Create a post</h2>
+    </div>
+
+    <div class="creating-post-container_input-block">
+        <div class="creating-post-container_input-block_img-block">
+
+            <input class="creating-post-container_input-block_img-block__input"
+             id="input_img"
+              type="file" 
+              (change)="choosePostImage($event, '')"
+              accept="image/*">
+            <label class="creating-post-container_input-block_img-block_label" for="input_img">
+                <img class="creating-post-container_input-block_img-block_label__img"
+             [src]="this.inputImg || '/assets/image/addPostImg.png'" alt="">
+            </label>
+        </div>
+        <textarea class="creating-post-container_input-block__input-txt" 
+        type="text"
+        [(ngModel)]="addPostDescription"
+        placeholder="What's new?"></textarea>
+    </div>
+
+    <div class="creating-post-container_button-block">
+        <p class="creating-post-container_button-block__txt"
+        *ngIf="buttonText || addPostDescription.length < 5">
+            A photo is required to create a post. The number of characters must be at least 5
+        </p>
+        <button class="creating-post-container_button-block__button" 
+        [disabled]="buttonDisabled || addPostDescription.length < 5"
+        (click)="this.addPostImage('posts')">Create
+        </button>
+    </div>
+    <div class="creating-post-container_background" *ngIf="this.preloader"></div>
+    <img class="creating-post-container_preloader"
+     src="/assets/image/profile-loader.svg" *ngIf="this.preloader" alt="">
+</div>
+

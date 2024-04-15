@@ -1,0 +1,301 @@
+.blog-container {
+    width: 100%;
+    min-height: 72vh;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    background: #f1f1f1;
+    padding: 84px 0px 95px 0px;
+    z-index: 2;
+}
+
+.blog-container_stories-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    padding: 0px 25px 9px;
+}
+
+.blog-container_stories-carousel_story-block-my {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.blog-container_stories-carousel_story-block-my_img-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.blog-container_stories-carousel_story-block-my_img-block__img {
+    width: 11vw;
+    max-width: 47px;
+    border-radius: 50%;
+    border: #00ACEE solid 3px;
+}
+
+.blog-container_stories-carousel_story-block-my_img-block__plus {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 1px;
+    bottom: 4px;
+    background-color: #00ACEE;
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: 400;
+    color: #FFF;
+}
+
+.blog-container_stories-carousel_story-block-my_img-block__plus> span {
+  margin-bottom: 1.6px;
+  margin-left: 0.1px;
+}
+
+.blog-container_stories-carousel_story-block-my__name,
+.blog-container_stories-carousel_story-block__name {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    text-align: center;
+    line-height: 12px;
+    color: #707070;
+    margin-top: 7px;
+}
+
+.blog-container_stories-carousel_story-block {
+    max-width: 61px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 24px;
+}
+
+.blog-container_stories-carousel_story-block__img {
+    width: 12vw;
+    max-width: 52px;
+}
+
+.blog-container__line {
+    width: 100%;
+    height: 1px;
+    background: rgb(0,172,238);
+    background: linear-gradient(90deg, rgba(0,172,238,0) 0%, rgba(0,172,238,1) 50%, rgba(0,172,238,0) 100%)
+}
+
+.blog-container_posts-block {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.blog-container_posts-block_user-block {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 20px;
+}
+
+.blog-container_posts-block_user-block__img {
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.blog-container_posts-block_user-block__name {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+    color: #707070;
+}
+
+.blog-container_posts-block_image-block {
+    width: 100%;
+    margin: 9px 0px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-container_posts-block_image-block__img {
+    width: 100%;
+}
+
+.blog-container_posts-block_name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin: 0px 20px;
+}
+
+.blog-container_posts-block_name_descroption {
+    max-width: 76%;
+    display: flex;
+    align-items: flex-start;
+    text-align: start;
+    letter-spacing: -0.02em;
+    color: #000000;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 12px;
+}
+
+.blog-container_posts-block_name_descroption__dots {
+    color: #00ACEE;
+    font-size: 19px;
+}
+
+.blog-container_posts-block_name__time-ago {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 12px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #707070;
+}
+
+.blog-container_posts-block_icon-block {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    margin: 15px 0px 0px 20px;
+    position: relative;
+}
+
+.blog-container_posts-block_icon-block__img-like {
+    width: 26px;
+}
+
+.like-count {
+  padding-left: 6px;
+  font-size: 17px;
+  font-weight: 500;
+  padding-top: 2px;
+  color: #707070;
+}
+
+.blog-container_posts-block_icon-block__img-like-double {
+    width: 32px;
+}
+
+.blog-container_posts-block_icon-block__img-comment {
+    width: 26px;
+    margin-left: 25px;
+}
+
+.blog-container_posts-block_icon-block__img-download {
+    width: 26px;
+    margin-left: 25px;
+}
+
+share-buttons {
+    max-width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #00acee;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 50px;
+}
+
+.blog-container_loading-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blog-container_loading-block__loading {
+    display:inline-block;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 35px;
+    color: #00ACEE;
+    clip-path: inset(0 3ch 0 0);
+    animation: l 1s steps(4) infinite;
+  }
+
+@keyframes l {
+    to {
+      clip-path: inset(0 -1ch 0 0)
+    }
+}
+
+.blog-container_btn-block {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 94px;
+    right: 23px;
+    background: #00ACED;
+    border-radius: 50%;
+}
+
+.blog-container_btn-block__btn {
+    color: #FFFFFF;
+    font-size: 34px;
+    margin-top: -3px;
+}
+
+.like-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background-image: url('/assets/icon/heart.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0;
+  animation-name: like-animation;
+  animation-duration: 0.8s;
+  }
+
+  @keyframes like-animation {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 0;
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+app-menu {
+    width: 100%;
+    background: 241, 241, 241, 0;
+    position: fixed;
+    bottom: 0;
+}

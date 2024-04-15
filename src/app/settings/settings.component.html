@@ -1,0 +1,31 @@
+<div class="settings">
+    <div class="settings-title">
+        <p class="settings-title_header">Settings</p>
+        <img class="settings-title_img" src="/assets/icon/header-description.png" alt="">
+    </div>
+    <div class="settings-user">
+            <div class="settings-user_name"
+            style="background-image: url('{{user?.photoURL}}');background-color: inherit;"
+              *ngIf="user?.photoURL else elseBlock"
+              ></div>
+              <ng-template #elseBlock>
+                <div class="settings-user_name">
+                {{user?.nickName | avatar}}
+                </div>
+              </ng-template>
+            
+            <div class="settings-user_data">
+                <p class="settings-user_data__name">{{user?.name}}</p>
+                <p class="settings-user_data__fon">{{user?.phone}}</p>
+                <p class="settings-user_data__mail">{{user?.nickName}}</p>
+            </div>
+    </div>
+    <div class="line"></div>
+    <div class="settings-subblock">
+        <div *ngFor="let item of menuService.menuSetting" routerLink={{item.url}} routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="menuService.changeComponent()" class="settings-subblock__profile">
+            <img class="settings-subblock__profile-img" src={{item.img}} alt="">
+            <p class="settings-subblock__profile-subtitle">{{item.title}}</p>
+            <span *ngIf="item.active" class="language">English</span>
+        </div>
+    </div>
+</div>

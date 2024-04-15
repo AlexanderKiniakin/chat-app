@@ -1,0 +1,91 @@
+<div class="header">
+  <div class="navbar" *ngIf="!headerMobileService.mainHeader">
+    <div class="navbar-name">
+      <img
+        class="navbar-icon"
+        src="/assets/icon/arrow-left.png"
+        alt=""
+        [routerLink]="['/chat-list']"
+      />
+      <div
+        class="navbar-image"
+        [ngStyle]="{
+          'background-image': user?.photoURL ? 'url(' + user?.photoURL + ')' : ''
+        }"
+      >
+      <div class="header-logo">
+      <div class="header-main-img__check-active" *ngIf="user?.online"></div>
+          <div class="header-main-img__check" *ngIf="!user?.online"></div>
+          </div>
+        <div class="navbar-avatar" *ngIf="!user?.photoURL">
+          {{ user?.nickName | avatar }}
+        </div>
+      </div>
+      <div class="navbar-name_block">
+        <p class="navbar-name_description">{{ user?.nickName }}</p>
+        <p class="navbar-name_data">Last seen at 12:34</p>
+      </div>
+    </div>
+    <div class="navbar-menu">
+      <img
+        *ngIf="!headerMobileService.searchActiveDesktop"
+        class="search-inactive_icon"
+        src="/assets/icon/search-icon.png"
+        alt="icon"
+        (click)="headerMobileService.searchActiveDesktop = true"
+      />
+      <img
+        *ngIf="headerMobileService.searchActiveDesktop"
+        class="search-active_icon"
+        src="assets/image/search-active.png"
+        alt="icon"
+        (click)="headerMobileService.searchActiveDesktop = false"
+      />
+      <img
+        class="navbar-phone"
+        src="/assets/icon/header-phone.png"
+        alt="icon"
+      />
+      <img
+        class="navbar-video"
+        src="/assets/icon/header-video.png"
+        alt="icon"
+      />
+      <img
+        class="navbar-description"
+        src="/assets/icon/header-description.png"
+        alt=""
+      />
+    </div>
+  </div>
+
+  <div class="navbar" *ngIf="headerMobileService.mainHeader">
+    <div class="navbar-name">
+      <span *ngIf="headerMobileService.activeRouteComponent?.line"
+        ><img class="navbar-name_img" src="/assets/icon/arrow.svg" alt=""
+      /></span>
+      <span
+        class="title"
+        [ngClass]="headerMobileService.dynamic ? 'dynamics' : 'title'"
+        >{{ headerMobileService.activeRouteComponent?.name }}</span
+      >
+    </div>
+    <div class="navbar-menu">
+      <img
+        *ngIf="!headerMobileService.searchActive"
+        class="search-inactive_icon"
+        src="/assets/icon/search-icon.png"
+        alt="icon"
+        (click)="headerMobileService.searchActive = true"
+      />
+      <img
+        *ngIf="headerMobileService.searchActive"
+        class="search-active_icon"
+        src="assets/image/search-active.png"
+        alt="icon"
+        (click)="headerMobileService.searchActive = false"
+      />
+      <img class="navbar-menu_icon" src="/assets/icon/user-icon.png" alt="" />
+    </div>
+  </div>
+</div>

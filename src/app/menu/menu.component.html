@@ -1,0 +1,16 @@
+<div class="section-menu">
+    <div class="menu-nav">
+        <div class="menu-nav-container">
+            <div *ngFor="let item of menuService.menuItem" routerLink={{item.url}} routerLinkActive="active-link" (isActiveChange)="item.active = true" (click)="this.toggle(item.id)" class="menu-nav-item">
+                <img class="img-home" *ngIf="item.active; else elseBlock" src={{item.activeImg}} alt="img">
+                <ng-template #elseBlock>
+                    <img class="img-home" src={{item.img}} alt="img">
+                </ng-template>
+                <p class="menu-nav-item-title menu-active-color" *ngIf="item.active; else colorBlock">{{item.title}}</p>
+                <ng-template #colorBlock>
+                    <p class="menu-nav-item-title">{{item.title}}</p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

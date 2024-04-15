@@ -1,0 +1,92 @@
+<div class="registration">
+  <div class="registration_main-container">
+    <p class="registration_main-container_greeting">Hello</p>
+    <h2 class="registration_main-container_description">
+      <span class="blue-color">Sign up for</span> a free TimeChat account!
+    </h2>
+  </div>
+  <div class="registration-form-container">
+    <h2 class="registration-form_title">
+      Enter <span class="blue-color">phone</span> number!
+    </h2>
+
+    <div class="registration-form_country-block">
+      <div class="registration-form_country-flag-container">
+        <img
+          class="registration-form_country-flag__img"
+          src="/assets/image/flag.png"
+          
+          alt=""
+        />
+        <img
+          class="registration-form_country-flag__icon"
+          src="/assets/icon/Vector 94.png"
+          alt=""
+        />
+      </div>
+
+      <div class="registration-form-input">
+        <div class="registration-form-input__country-code">
+          {{ authService.countryCode }}
+          <input
+            class="registration-form-input__phone"
+            name="phone"
+            type="phone"
+            [(ngModel)]="authService.phoneNumber"
+            required
+            placeholder="298090275"
+            pattern="[0-9]{9}"
+            #phone="ngModel"
+            (input)="phoneNumberInput()"
+          />
+        </div>
+        <div
+          [hidden]="phone.valid || phone.untouched"
+          class="alert alert-danger"
+          *ngIf="!visibility"
+        >
+          Please enter a valid phone number!
+        </div>
+      </div>
+    </div>
+
+    <div class="registration-form_checkbox-container">
+      <div class="registration-form_checkbox-container__item">
+        <input
+          class="checkbox"
+          type="checkbox"
+          id="termsCheckbox"
+          required
+          [(ngModel)]="termsChecked"
+        />
+        <label for="termsCheckbox"
+          >I have read and agree to the site terms</label
+        >
+      </div>
+
+      <div class="registration-form_checkbox-container__item">
+        <input
+          class="checkbox"
+          type="checkbox"
+          id="privacyCheckbox"
+          required
+          [(ngModel)]="privacyChecked"
+        />
+        <label for="privacyCheckbox">I accept the privacy policy</label>
+      </div>
+    </div>
+    <div class="error-message">{{ authService.errorMessage }}</div>
+
+    <div class="registration-button">
+      <button
+        class="button"
+        [disabled]="!termsChecked || !privacyChecked || !phone.valid"
+        (click)="authService.sendLoginCode()"
+        router
+      >
+        Next
+      </button>
+    </div>
+    <div id="recaptcha-container"></div>
+  </div>
+</div>
